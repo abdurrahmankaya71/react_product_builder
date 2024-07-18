@@ -1,6 +1,7 @@
 // interface IProps {}
 
 import Image from "./Image";
+import Button from "./ui/Button";
 
 const ProductCard = () => {
     return (
@@ -31,12 +32,15 @@ const ProductCard = () => {
                 />
             </div>
             <div className="flex items-center justify-between gap-3 mt-5">
-                <button className="bg-indigo-600 flex-1 rounded-md text-white p-1">
+                <Button
+                    className="bg-indigo-600"
+                    onClick={() => {
+                        console.log("clicked");
+                    }}
+                >
                     Edit
-                </button>
-                <button className="bg-red-700 flex-1 rounded-md text-white p-1">
-                    Delete
-                </button>
+                </Button>
+                <Button className="bg-red-700 ">Delete</Button>
             </div>
         </div>
     );
