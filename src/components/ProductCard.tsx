@@ -1,11 +1,14 @@
 // interface IProps {}
 
+import Image from "./Image";
+
 const ProductCard = () => {
     return (
         <div className="border rounded-md p-2 flex flex-col">
-            <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="product name"
+            <Image
+                imageURL="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Nike shoes"
+                className="rounded-md mb-2"
             />
             <h3>Lorem Ipsum</h3>
             <p>
@@ -21,13 +24,13 @@ const ProductCard = () => {
             </div>
             <div className="flex items-center justify-between">
                 <span>$120.00</span>
-                <img
-                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="product name"
-                    className="w-10 h-10 rounded-full "
+                <Image
+                    imageURL="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Nike shoes"
+                    className="w-10 h-10 rounded-full object-fill"
                 />
             </div>
-            <div className="flex items-center justify-between gap-3 mt-3">
+            <div className="flex items-center justify-between gap-3 mt-5">
                 <button className="bg-indigo-600 flex-1 rounded-md text-white p-1">
                     Edit
                 </button>
