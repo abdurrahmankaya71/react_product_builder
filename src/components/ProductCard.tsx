@@ -1,33 +1,34 @@
-// interface IProps {}
-
-import Image from "./Image";
+import Image from "./ui/Image";
 import Button from "./ui/Button";
+import { IProduct } from "../interfaces";
+import { textSlicer } from "../utils/function";
 
-const ProductCard = () => {
+interface IProps {
+    product: IProduct;
+}
+
+const ProductCard = ({ product }: IProps) => {
+    //! destructuring
+    const { description, imgURL, title, price, category } = product;
     return (
-        <div className="border rounded-md p-2 flex flex-col">
+        <div className="max-w-sm md:max-w-lg mx-auto border rounded-md p-2 flex flex-col ">
             <Image
-                imageURL="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                imageURL={imgURL}
                 alt="Nike shoes"
                 className="rounded-md mb-2"
             />
-            <h3>Lorem Ipsum</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga
-                nemo eum, quam illum ut debitis vel officiis hic, id architecto
-                ipsa dolorem qui. Eius, odio? Modi labore expedita dolorum
-                voluptates.
-            </p>
+            <h3 className="font-semibold">{title}</h3>
+            <p>{textSlicer(description)}</p>
             <div className="flex items-center my-3 basis-5 space-x-2">
                 <span className="w-5 h-5 bg-red-600 rounded-full cursor-pointer" />
                 <span className="w-5 h-5 bg-indigo-600 rounded-full cursor-pointer" />
                 <span className="w-5 h-5 bg-teal-700 rounded-full cursor-pointer" />
             </div>
             <div className="flex items-center justify-between">
-                <span>$120.00</span>
+                <span className="text-indigo-800 font-bold">${price}</span>
                 <Image
-                    imageURL="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Nike shoes"
+                    imageURL={category.imageURL}
+                    alt={category.name}
                     className="w-10 h-10 rounded-full object-fill"
                 />
             </div>
