@@ -1,24 +1,37 @@
 import Button from "./components/ui/Button";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
-// import Modal from "./components/ui/Modal";
 import { productList, formInputsList } from "./data";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Input from "./components/ui/Input";
+import { IProduct } from "./interfaces";
 
 const App = () => {
     //! ------- STATES ------------
     const [isOpen, setIsOpen] = useState(false);
+    const [product, setProduct] = useState<IProduct>({
+        title: "",
+        description: "",
+        imgURL: "",
+        price: "",
+        colors: [],
+        category: {
+            name: "",
+            imageURL: "",
+        },
+    });
 
     //! ------- HANDLER ------------
 
-    function open() {
-        setIsOpen(true);
-    }
-
-    function close() {
-        setIsOpen(false);
-    }
+    const open = () => setIsOpen(true);
+    const close = () => setIsOpen(false);
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value, name } = e.target;
+        setProduct({
+            ...product,
+            [name]: value,
+        });
+    };
 
     //! ------ RENDERS ------------
     //* Render product list
@@ -27,12 +40,19 @@ const App = () => {
     });
     //* Render form input list
     const renderFormInputList = formInputsList.map((input) => {
+        const { id, type, name, label } = input;
         return (
-            <div className="text-black flex flex-col mt-3">
+            <div key={id} className="text-black flex flex-col mt-3">
                 <label htmlFor={input.id} className="text-md">
-                    {input.label}
+                    {label}
                 </label>
-                <Input id={input.id} type={input.type} name={input.name} />
+                <Input
+                    id={id}
+                    type={type}
+                    name={name}
+                    value={product[input.name]}
+                    onChange={onChangeHandler}
+                />
             </div>
         );
     });
