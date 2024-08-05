@@ -10,7 +10,7 @@ interface IProps {
 
 const Modal = ({ isOpen, close, title, children }: IProps) => {
     return (
-        <>
+        <div>
             <Dialog
                 open={isOpen}
                 as="div"
@@ -21,7 +21,7 @@ const Modal = ({ isOpen, close, title, children }: IProps) => {
                     <div className="flex min-h-full items-center justify-center p-4">
                         <DialogPanel
                             transition
-                            className="w-full max-w-md rounded-xl bg-white/60 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+                            className="w-full max-w-md rounded-xl bg-white p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
                         >
                             {title && (
                                 <DialogTitle
@@ -32,14 +32,14 @@ const Modal = ({ isOpen, close, title, children }: IProps) => {
                                 </DialogTitle>
                             )}
 
-                            <p className="mt-2 text-sm/6 text-white/50">
+                            <div className="mt-2 text-sm/6 text-white/50">
                                 {children}
-                            </p>
+                            </div>
                         </DialogPanel>
                     </div>
                 </div>
             </Dialog>
-        </>
+        </div>
     );
 };
 export default Modal;

@@ -11,7 +11,7 @@ const ProductCard = ({ product }: IProps) => {
     //! destructuring
     const { description, imgURL, title, price, category } = product;
     return (
-        <div className="max-w-sm md:max-w-lg mx-auto border rounded-md p-2 flex flex-col ">
+        <div className="max-w-sm md:max-w-lg mx-auto border rounded-md p-2 flex flex-col bg-gray-50 ">
             <Image
                 imageURL={imgURL}
                 alt="Nike shoes"
