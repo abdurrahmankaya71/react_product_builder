@@ -9,6 +9,7 @@ import { productValidation } from "./validation";
 import ErrorMessage from "./components/ui/ErrorMessage";
 import CircleColor from "./components/ui/CircleColor";
 import { v4 as uuid } from "uuid";
+import Select from "./components/ui/Select";
 
 const App = () => {
     //! ------- STATES ------------
@@ -153,6 +154,7 @@ const App = () => {
                             </span>
                         ))}
                     </div>
+                    <Select />
                     <div className="flex space-x-2 mt-5">
                         <Button
                             className="bg-indigo-600 text-white"

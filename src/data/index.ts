@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { IFormInput, IProduct } from "../interfaces";
+import { ICategory, IFormInput, IProduct } from "../interfaces";
 
 export const productList: IProduct[] = [
     {
@@ -107,4 +107,30 @@ export const colors: string[] = [
     "#1F8A70",
     "#820000",
     "#FF0032",
+];
+export const categories: ICategory[] = [
+    {
+        id: uuid(),
+        name: "Cars",
+        imageURL:
+            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: uuid(),
+        name: "Test",
+        imageURL:
+            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: uuid(),
+        name: "Nike",
+        imageURL:
+            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: uuid(),
+        name: "Adidas",
+        imageURL:
+            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
 ];
