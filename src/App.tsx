@@ -1,12 +1,14 @@
 import Button from "./components/ui/Button";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
-import { productList, formInputsList } from "./data";
+import { productList, formInputsList, colors } from "./data";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "./components/ui/Input";
 import { IProduct } from "./interfaces";
 import { productValidation } from "./validation";
 import ErrorMessage from "./components/ui/ErrorMessage";
+import CircleColor from "./components/ui/CircleColor";
+import { v4 as uuid } from "uuid";
 
 const App = () => {
     //! ------- STATES ------------
@@ -28,7 +30,9 @@ const App = () => {
         imgURL: "",
         price: "",
     });
+    const [products, setProducts] = useState<IProduct[]>(productList);
     const [product, setProduct] = useState<IProduct>(defaultProductObj);
+    const [tempColors, setTempColors] = useState<string[]>([]);
 
     //! ------- HANDLER ------------
 
@@ -44,6 +48,10 @@ const App = () => {
             ...product,
             [name]: value,
         });
+    };
+    const onCancel = () => {
+        setProduct(defaultProductObj);
+        setTempColors([]);
     };
     const submitHandler = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -64,20 +72,25 @@ const App = () => {
             setErrors(errors);
             return;
         }
-    };
-    const onCancel = () => {
+        setProducts((prev) => [
+            { ...product, id: uuid(), colors: tempColors },
+            ...prev,
+        ]);
         setProduct(defaultProductObj);
+        setTempColors([]);
+        close();
+
+        console.log("Urun basarili bir sekilde eklendi");
     };
 
     //! ------ RENDERS ------------
     //* Render product list
-    const renderProductList = productList.map((product) => {
+    const renderProductList = products.map((product) => {
         return <ProductCard key={product.id} product={product} />;
     });
     //* Render form input list
     const renderFormInputList = formInputsList.map((input) => {
         const { id, type, name, label } = input;
-        //! ---------- RETURN -------------
         return (
             <div key={id} className="text-black flex flex-col mt-3">
                 <label htmlFor={input.id} className="text-md">
@@ -94,7 +107,24 @@ const App = () => {
             </div>
         );
     });
+    //* Render product colors
+    const renderProdColors = colors.map((color) => (
+        <CircleColor
+            key={color}
+            color={color}
+            onClick={() => {
+                if (tempColors.includes(color)) {
+                    setTempColors((prev) =>
+                        prev.filter((item) => item !== color)
+                    );
+                    return;
+                }
+                setTempColors((prev) => [...prev, color]);
+            }}
+        />
+    ));
 
+    //! ---------- RETURN -------------
     return (
         <main className="container mx-auto">
             <Button
@@ -109,6 +139,20 @@ const App = () => {
             <Modal close={close} isOpen={isOpen} title="Add a new product">
                 <form className="space-y-3" onSubmit={submitHandler}>
                     {renderFormInputList}
+                    <div className="flex items-center my-3 basis-5 space-x-2">
+                        {renderProdColors}
+                    </div>
+                    <div className="flex items-center my-3 basis-5 space-x-2">
+                        {tempColors.map((color) => (
+                            <span
+                                className="text-white rounded-md p-1 mr-1 text-sm"
+                                key={color}
+                                style={{ backgroundColor: color }}
+                            >
+                                {color}
+                            </span>
+                        ))}
+                    </div>
                     <div className="flex space-x-2 mt-5">
                         <Button
                             className="bg-indigo-600 text-white"
